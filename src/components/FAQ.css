@@ -23,6 +23,11 @@
     font-size: 14px;
 }
 
+.faq-container span {
+    color: var(--secondary);
+    font-weight: bold;
+}
+
 .content-title {
     border-bottom: 1px solid #CCC;
     padding-bottom: 20px;
