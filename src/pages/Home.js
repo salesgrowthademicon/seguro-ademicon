@@ -1,16 +1,28 @@
+import React from "react";
 import "./Home.css";
 import Carousel from "../components/Carousel";
 import benefits from "../assets/vantagens.svg";
 import risco1 from "../assets/risco-1-seguro.svg";
 import risco2 from "../assets/risco-2-seguro.svg";
-import React from "react";
+import ModalContact from "../components/ModalContact";
+import { useState } from "react";
 
-const Home = () => {
+const Home = ({ onClick, cards }) => {
+  const [modal, setModal] = useState(false);
+
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const onClose = () => {
+    setModal(false);
+  }
+
   return (
     <div className="App">
       <div className="content">
         <div className="col">
-          <img src={risco1} alt=""/>
+          <img src={risco1} alt="" />
         </div>
         <div className="middle-col">
           <p>
@@ -48,7 +60,11 @@ const Home = () => {
           <h3 className="subtitle" style={{ color: "var(--secondary)" }}>
             Escolha entre as opções abaixo:
           </h3>
-          <Carousel />
+          <Carousel
+            onClick={(e) => onClick(e)}
+            cards={cards}
+            openModal={openModal}
+          />
           <br />
           <br />
           <br />
@@ -113,9 +129,10 @@ const Home = () => {
           <br />
         </div>
         <div className="col col-rigth">
-          <img src={risco2} alt=""/>
+          <img src={risco2} alt="" />
         </div>
       </div>
+      {modal && <ModalContact showModal={modal} onClose={onClose} />}
     </div>
   );
 };
